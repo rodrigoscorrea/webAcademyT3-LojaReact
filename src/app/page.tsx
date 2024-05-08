@@ -1,19 +1,22 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import ResumoCarrinho from "./components/ResumoCarrinho";
 import CardProduto from "./components/CardProduto";
 import ListagemProdutos from "./components/ListagemProdutos";
 
-import { mockProdutos } from "./mocks/produto";
-
 export default function Produtos() {
 
-  const produtos = mockProdutos;
-
+  const [produtos, setProdutos] = useState();
   const [quantidadeTotalItens, setQuantidadeTotalItens] = useState<number>(0);
   const [precoTotal, setPrecoTotal] = useState<number>(0);
+
+  useEffect(()=>{
+    fetch(" https://ranekapi.origamid.dev/json/api/produto")
+    .then((response)=>response.json())
+    .then((json)=>setProdutos(json));
+  }, []);
 
   const adicionarAoCarrinho = (produto: Produto):void => {
     setQuantidadeTotalItens(quantidadeTotalItens + 1);
