@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from "react"
 import { useParams } from "next/navigation"
-import DetalhesProduto from "./detalhesProduto";
+import DetalhesProduto from "./DetalhesProduto";
 
 export default function produto(){
     const [produto, setProduto] = useState<Produto | undefined>();
